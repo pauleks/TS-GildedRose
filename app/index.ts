@@ -31,6 +31,9 @@ outputItems(items, 0);
 let i = 0;
 const logWriter = createWriteStream("./log.txt", { flags: "w" });
 const recursionLoop = async () => {
+  if (i == CShopUpdates)
+    return;
+
   const result = await runRequestsUntilZero(CRequests);
 
   // Logging
@@ -44,7 +47,6 @@ const recursionLoop = async () => {
 
   items = gildedRose.updateQuality();
   outputItems(items, ++i);
-  if (i < CShopUpdates) recursionLoop();
 };
 
 recursionLoop();
